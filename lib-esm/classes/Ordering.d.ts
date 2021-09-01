@@ -5,6 +5,7 @@ import { ApiSystem } from './ApiSystem';
 import { ApiUser } from './ApiUser';
 import { ApiValidationField } from './ApiValidationField';
 import { ApiOrder } from './ApiOrder';
+import { ApiControls } from './ApiControls';
 import { ApiBusiness } from './ApiBusiness';
 import { ApiDriversGroups } from './ApiDriversGroups';
 import { ApiConfig } from './ApiConfig';
@@ -43,6 +44,7 @@ export declare class Ordering {
     setLanguage(language: string): this;
     users(userId?: number): ApiUser;
     orders(orderId?: number): ApiOrder;
+    controls(orderId?: number): ApiControls;
     driversgroups(): ApiDriversGroups;
     configs(configId?: number): ApiConfig;
     businesses(businessId: number | string): ApiBusiness;
