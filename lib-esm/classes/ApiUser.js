@@ -50,6 +50,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 import { User } from '../models/User';
 import { ApiAddress } from './ApiAddress';
 import { ApiBase } from './ApiBase';
+import { ApiDriverLocations } from './ApiDriverLocations';
 /**
  * Class to user api control
  */
@@ -315,6 +316,16 @@ var ApiUser = /** @class */ (function (_super) {
             throw new Error('`userId` is require to use API addresses. Example: ordering.users(userId).addresses().get()');
         }
         return new ApiAddress(this.ordering, this.userId, addressId);
+    };
+    /**
+   * Return the api driver locations
+   * @param {number} addressId Address id is optional
+   */
+    ApiUser.prototype.driverLocations = function () {
+        if (!this.userId) {
+            throw new Error('`userId` is require to use API addresses. Example: ordering.users(userId).driverLocations().get()');
+        }
+        return new ApiDriverLocations(this.ordering, this.userId);
     };
     return ApiUser;
 }(ApiBase));

@@ -4,6 +4,7 @@ import { RequestOptionsProps } from '../interfaces/RequestOptionsProps';
 import { UserProps } from '../models/User';
 import { ApiAddress } from './ApiAddress';
 import { ApiBaseInterface, ApiBase } from './ApiBase';
+import { ApiDriverLocations } from './ApiDriverLocations';
 interface CredentialsProps {
     email?: string;
     cellphone?: string;
@@ -101,5 +102,10 @@ export declare class ApiUser extends ApiBase implements ApiBaseInterface {
      * @param {number} addressId Address id is optional
      */
     addresses(addressId: number): ApiAddress;
+    /**
+   * Return the api driver locations
+   * @param {number} addressId Address id is optional
+   */
+    driverLocations(): ApiDriverLocations;
 }
 export {};
