@@ -20,6 +20,11 @@ export declare class ApiCart extends ApiBase implements ApiBaseInterface {
      */
     get(options?: RequestOptionsProps): Promise<ApiResponse>;
     /**
+     * Get a cart stores if cartId is set else get all
+     * @param {RequestOptionsProps} options Params, headers and other options
+     */
+    getBusinesses(options?: RequestOptionsProps): Promise<ApiResponse>;
+    /**
      * set a cart if cartId is set else get all
      * @param {RequestOptionsProps} options Params, headers and other options
      */
