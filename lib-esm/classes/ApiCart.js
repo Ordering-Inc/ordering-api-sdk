@@ -100,8 +100,8 @@ var ApiCart = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (this.cartId) {
-                            throw new Error('The `cartId` is required to use ordering.carts(cartId).confirm(options).');
+                        if (!this.cartId) {
+                            throw new Error('The `cartId` is required to use ordering.carts(cartId).getBusinesses(options).');
                         }
                         url = "/carts/" + this.cartId + "/businesses";
                         return [4 /*yield*/, this.makeRequest('GET', url, undefined, Cart, options)];
