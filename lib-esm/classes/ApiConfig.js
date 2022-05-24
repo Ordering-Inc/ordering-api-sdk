@@ -77,7 +77,7 @@ var ApiConfig = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (this.configId && this.conditions.length > 0) {
+                        if (this.configId && this.conditions) {
                             throw new Error('The `where` function is not compatible with configs(configId). Example ordering.configs().where(contitions).get()');
                         }
                         url = '/configs' + (this.configId ? "/" + this.configId : '');

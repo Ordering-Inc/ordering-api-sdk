@@ -1,3 +1,14 @@
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,25 +45,43 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 import { ApiResponse } from './ApiResponse';
 import { ApiLanguage } from './ApiLanguage';
 import { ApiSystem } from './ApiSystem';
 import { ApiUser } from './ApiUser';
 import { ApiValidationField } from './ApiValidationField';
 import { ApiOrder } from './ApiOrder';
+import { ApiControls } from './ApiControls';
 import { ApiBusiness } from './ApiBusiness';
-import axios from 'axios';
+import { ApiDriversGroups } from './ApiDriversGroups';
 import { ApiConfig } from './ApiConfig';
 import { ApiTranslation } from './ApiTranslation';
+import { ApiPage } from './ApiPage';
+import { ApiCountry } from './ApiCountry';
+import { ApiOrderOption } from './ApiOrderOption';
+import { ApiCart } from './ApiCart';
+import { ApiPaymentCards } from './ApiPaymentCards';
 var Ordering = /** @class */ (function () {
     function Ordering(_a) {
-        var _b = _a === void 0 ? {} : _a, _c = _b.url, url = _c === void 0 ? 'https://apiv4.ordering.co' : _c, _d = _b.version, version = _d === void 0 ? 'v400' : _d, _e = _b.project, project = _e === void 0 ? 'demo' : _e, _f = _b.language, language = _f === void 0 ? 'en' : _f, _g = _b.accessToken, accessToken = _g === void 0 ? null : _g, _h = _b.apiKey, apiKey = _h === void 0 ? null : _h;
+        var _b = _a === void 0 ? {} : _a, _c = _b.url, url = _c === void 0 ? 'https://apiv4.ordering.co' : _c, _d = _b.version, version = _d === void 0 ? 'v400' : _d, _e = _b.project, project = _e === void 0 ? 'demo' : _e, _f = _b.language, language = _f === void 0 ? 'en' : _f, _g = _b.accessToken, accessToken = _g === void 0 ? null : _g, _h = _b.apiKey, apiKey = _h === void 0 ? null : _h, _j = _b.appId, appId = _j === void 0 ? null : _j;
         this.url = url;
         this.version = version;
         this.project = project;
         this.language = language;
         this.accessToken = accessToken;
         this.apiKey = apiKey;
+        this.appId = appId;
     }
     Object.defineProperty(Ordering.prototype, "root", {
         get: function () {
@@ -76,6 +105,26 @@ var Ordering = /** @class */ (function () {
         this.apiKey = apiKey;
         return this;
     };
+    Ordering.prototype.setAppId = function (appId) {
+        this.appId = appId;
+        return this;
+    };
+    Ordering.prototype.setUrl = function (url) {
+        this.url = url;
+        return this;
+    };
+    Ordering.prototype.setProject = function (project) {
+        this.project = project;
+        return this;
+    };
+    Ordering.prototype.setVersion = function (version) {
+        this.version = version;
+        return this;
+    };
+    Ordering.prototype.setLanguage = function (language) {
+        this.language = language;
+        return this;
+    };
     Ordering.prototype.users = function (userId) {
         if (userId === void 0) { userId = null; }
         return new ApiUser(this, userId);
@@ -83,6 +132,13 @@ var Ordering = /** @class */ (function () {
     Ordering.prototype.orders = function (orderId) {
         if (orderId === void 0) { orderId = null; }
         return new ApiOrder(this, orderId);
+    };
+    Ordering.prototype.controls = function (orderId) {
+        if (orderId === void 0) { orderId = null; }
+        return new ApiControls(this, orderId);
+    };
+    Ordering.prototype.driversgroups = function () {
+        return new ApiDriversGroups(this);
     };
     Ordering.prototype.configs = function (configId) {
         if (configId === void 0) { configId = null; }
@@ -100,67 +156,142 @@ var Ordering = /** @class */ (function () {
     Ordering.prototype.translations = function (translationId) {
         return new ApiTranslation(this, translationId);
     };
+    Ordering.prototype.pages = function (pageId) {
+        return new ApiPage(this, pageId);
+    };
+    Ordering.prototype.countries = function (countryId) {
+        return new ApiCountry(this, countryId);
+    };
+    Ordering.prototype.orderOptions = function (orderOptionId) {
+        return new ApiOrderOption(this, orderOptionId);
+    };
+    Ordering.prototype.carts = function (cartId) {
+        return new ApiCart(this, cartId);
+    };
+    Ordering.prototype.paymentCards = function (bussinessId, userId, cardId) {
+        return new ApiPaymentCards(this, bussinessId, userId, cardId);
+    };
     Ordering.prototype.system = function () {
         return new ApiSystem(this);
     };
     Ordering.prototype.getRequestProps = function (options) {
-        var _a, _b, _c;
+        var _a;
         var root = options.system ? this.systemRoot : this.root;
-        var query = options.query || {};
-        if (Object.keys(query).length > 0) {
-            for (var key in query) {
-                query[key] = typeof query[key] === 'object' ? JSON.stringify(query[key]) : query[key];
+        var query = options.query, mode = options.mode, conditions = options.conditions, headers = options.headers, otherOptions = __rest(options
+        /**
+         * Parse query
+         */
+        , ["query", "mode", "conditions", "headers"]);
+        /**
+         * Parse query
+         */
+        var _query = query || {};
+        if (_query && Object.keys(_query).length > 0) {
+            for (var key in _query) {
+                _query[key] = typeof _query[key] === 'object' ? JSON.stringify(_query[key]) : _query[key];
             }
         }
         /**
          * Parse params from options and select attributes
          */
-        var params = ((_b = (_a = options.query) === null || _a === void 0 ? void 0 : _a.params) === null || _b === void 0 ? void 0 : _b.split(',')) || [];
+        var params = ((_a = _query === null || _query === void 0 ? void 0 : _query.params) === null || _a === void 0 ? void 0 : _a.split(',')) || [];
         params = params.concat(options.attributes || []);
         if (params.length > 0) {
-            query.params = params.join(',');
+            _query.params = params.join(',');
         }
         /**
          * Parse conditions to filter api data
          */
-        if (((_c = options.conditions) === null || _c === void 0 ? void 0 : _c.length) > 0) {
-            query.where = typeof options.conditions === 'object' ? JSON.stringify(options.conditions) : options.conditions;
+        if (conditions) {
+            _query.where = typeof conditions === 'object' ? JSON.stringify(conditions) : conditions;
         }
         /**
          * Parse conditions to filter api data
          */
-        if (options.mode) {
-            query.mode = options.mode;
+        if (mode) {
+            _query.mode = options.mode;
         }
         /**
          * Parse headers from options and default
          */
-        var headers = {};
+        var authHeaders = {};
         if (this.accessToken && !this.apiKey) {
-            headers.Authorization = "Bearer " + this.accessToken;
+            authHeaders.Authorization = "Bearer " + this.accessToken;
         }
         if (this.apiKey) {
-            headers['X-Api-Key'] = this.apiKey;
+            authHeaders['X-Api-Key'] = this.apiKey;
+        }
+        if (this.appId) {
+            authHeaders['X-APP-X'] = this.appId;
         }
         /**
-         * Create Axios Option Request
+         * Create Option Request
          */
-        var axiosOptions = {
-            validateStatus: function (status) { return status < 500; },
-            params: query || {},
-            headers: Object.assign(headers, options.headers || {})
-        };
-        return [root, axiosOptions];
+        var _options = __assign(__assign({}, otherOptions), { 
+            // validateStatus: status => status < 500,
+            params: _query || {}, headers: Object.assign(authHeaders, headers || {}) });
+        return [root, _options];
+    };
+    Ordering.prototype.makeRequest = function (method, url, data, options) {
+        var promise = new Promise(function (resolve, reject) {
+            var xhr = new window.XMLHttpRequest();
+            /**
+             * Parse query to request
+             */
+            var query = Object.entries(options.params || {}).map(function (entry) {
+                return entry[0] + "=" + entry[1];
+            }).join('&');
+            xhr.open(method, url + (query ? "?" + query : ''));
+            /**
+             * Add headers to request
+             */
+            Object.entries(options.headers || {}).forEach(function (entry) {
+                xhr.setRequestHeader(entry[0], entry[1]);
+            });
+            /**
+             * Create cancel request
+             */
+            if (options.cancelToken && typeof options.cancelToken === 'object') {
+                options.cancelToken.cancel = function () {
+                    xhr.abort();
+                };
+            }
+            xhr.onload = function () {
+                if (this.status < 500) {
+                    var data_1 = options.json ? JSON.parse(this.response) : this.response;
+                    resolve({
+                        request: this,
+                        data: data_1,
+                        status: this.status,
+                        statusText: this.statusText
+                    });
+                }
+                else {
+                    reject(new Error('Internal error'));
+                }
+            };
+            xhr.onerror = function (err) {
+                reject(err);
+            };
+            if (options.json) {
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.send(data ? JSON.stringify(data) : null);
+            }
+            else {
+                xhr.send();
+            }
+        });
+        return promise;
     };
     Ordering.prototype.get = function (path, options) {
         if (options === void 0) { options = { CastClass: null, json: true, system: false }; }
         return __awaiter(this, void 0, void 0, function () {
-            var _a, root, axiosOptions, response;
+            var _a, root, reqOptions, response;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        _a = this.getRequestProps(options), root = _a[0], axiosOptions = _a[1];
-                        return [4 /*yield*/, axios.get(root + path, axiosOptions)];
+                        _a = this.getRequestProps(options), root = _a[0], reqOptions = _a[1];
+                        return [4 /*yield*/, this.makeRequest('GET', root + path, null, reqOptions)];
                     case 1:
                         response = _b.sent();
                         return [2 /*return*/, new ApiResponse(response, options, options.api)];
@@ -172,19 +303,19 @@ var Ordering = /** @class */ (function () {
         if (data === void 0) { data = {}; }
         if (options === void 0) { options = { CastClass: null, json: true, system: false }; }
         return __awaiter(this, void 0, void 0, function () {
-            var _a, root, axiosOptions, key, response;
+            var _a, root, reqOptions, key, response;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        _a = this.getRequestProps(options), root = _a[0], axiosOptions = _a[1];
+                        _a = this.getRequestProps(options), root = _a[0], reqOptions = _a[1];
                         if (options.json) {
                             for (key in data) {
-                                if (typeof data[key] === 'object') {
+                                if (data[key] !== null && typeof data[key] === 'object') {
                                     data[key] = JSON.stringify(data[key]);
                                 }
                             }
                         }
-                        return [4 /*yield*/, axios.post(root + path, data, axiosOptions)];
+                        return [4 /*yield*/, this.makeRequest('POST', root + path, data, reqOptions)];
                     case 1:
                         response = _b.sent();
                         return [2 /*return*/, new ApiResponse(response, options, options.api)];
@@ -196,19 +327,19 @@ var Ordering = /** @class */ (function () {
         if (data === void 0) { data = {}; }
         if (options === void 0) { options = { CastClass: null, json: true, system: false }; }
         return __awaiter(this, void 0, void 0, function () {
-            var _a, root, axiosOptions, key, response;
+            var _a, root, reqOptions, key, response;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        _a = this.getRequestProps(options), root = _a[0], axiosOptions = _a[1];
+                        _a = this.getRequestProps(options), root = _a[0], reqOptions = _a[1];
                         if (options.json) {
                             for (key in data) {
-                                if (typeof data[key] === 'object') {
+                                if (data[key] !== null && typeof data[key] === 'object') {
                                     data[key] = JSON.stringify(data[key]);
                                 }
                             }
                         }
-                        return [4 /*yield*/, axios.put(root + path, data, axiosOptions)];
+                        return [4 /*yield*/, this.makeRequest('PUT', root + path, data, reqOptions)];
                     case 1:
                         response = _b.sent();
                         return [2 /*return*/, new ApiResponse(response, options, options.api)];
@@ -219,12 +350,12 @@ var Ordering = /** @class */ (function () {
     Ordering.prototype.delete = function (path, options) {
         if (options === void 0) { options = { CastClass: null, json: true, system: false }; }
         return __awaiter(this, void 0, void 0, function () {
-            var _a, root, axiosOptions, response;
+            var _a, root, reqOptions, response;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        _a = this.getRequestProps(options), root = _a[0], axiosOptions = _a[1];
-                        return [4 /*yield*/, axios.delete(root + path, axiosOptions)];
+                        _a = this.getRequestProps(options), root = _a[0], reqOptions = _a[1];
+                        return [4 /*yield*/, this.makeRequest('DELETE', root + path, null, reqOptions)];
                     case 1:
                         response = _b.sent();
                         return [2 /*return*/, new ApiResponse(response, options, options.api)];

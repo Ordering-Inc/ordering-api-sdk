@@ -74,7 +74,7 @@ var ApiLanguage = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (this.languageId && this.conditions.length > 0) {
+                        if (this.languageId && this.conditions) {
                             throw new Error('The `where` function is not compatible with languages(languageId). Example ordering.languages().where(contitions).get()');
                         }
                         url = '/languages' + (this.languageId ? "/" + this.languageId : '');

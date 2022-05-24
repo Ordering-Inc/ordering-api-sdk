@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><title>Document</title></head><body><script src="ordering-sdk.js"></script><script src="ordering-sdk.min.js"></script><script>const ordering = new Ordering({
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><title>Document</title></head><body><script src="ordering-sdk.js"></script><script src="ordering-sdk.min.js"></script><script>const ordering = new Ordering.Ordering({
       url: 'http://localhost:8080',
       version: 'v400',
       project: 'development',
@@ -53,7 +53,8 @@
       //       }
       //     }
       //   ]
-      //   const findAllUserResponse = await ordering.users().select(['name', 'lastname', 'email', 'addresses', 'available']).where(conditions).asDashboard().get()
+      //   const cancelToken = {}
+      //   const findAllUserResponse = await ordering.users().select(['name', 'lastname', 'email', 'addresses', 'available']).where(conditions).asDashboard().get({ cancelToken })
       //   console.log('Get users', findAllUserResponse.content)
   
       //   const updateUserResponse = await ordering.users(user.id).save({ phone: Date.now() })
@@ -245,6 +246,162 @@
 
       // const updateTranslateResponse = await ordering.translations(translate.id).save({ text: 'e-mail' })
       // console.log('Update translate: ', updateTranslateResponse.content)
+
+      // Categories
+      // const getBusinessesDashboard = await ordering.businesses().asDashboard().get()
+      // const businessId = getBusinessesDashboard.content.result[0].id
+
+      // const getCategoryResponse = await ordering.businesses(businessId).categories().get()
+      // console.log('Categories: ', getCategoryResponse.content)
+      // const categoryId = getCategoryResponse.content.result[0].id
+
+      // const findOneCategoryResponse = await ordering.businesses(businessId).categories(categoryId).get()
+      // console.log('Category: ', findOneCategoryResponse.content)
+
+      // const category = findOneCategoryResponse.content.result
+      // const backUpName = category.name + ''
+      // category.name = `${category.name} SDK`
+      // const saveCategoryResponse = await category.save()
+      // console.log('Save new name', saveCategoryResponse)
+
+      // const updateCategoryResponse = await ordering.businesses(businessId).categories(categoryId).save({ name: backUpName })
+      // console.log('Update category: ', updateCategoryResponse.content)
+
+      // Products
+      // const getBusinessesDashboard = await ordering.businesses().asDashboard().get()
+      // const businessId = getBusinessesDashboard.content.result[0].id
+
+      // const getCategoryResponse = await ordering.businesses(businessId).categories().get()
+      // const categoryId = getCategoryResponse.content.result[0].id
+
+      // const getProductsResponse = await ordering.businesses(businessId).categories(categoryId).products().get()
+      // console.log('Products: ', getProductsResponse.content)
+      // const productId = getProductsResponse.content.result[0].id
+
+      // const findOneProductResponse = await ordering.businesses(businessId).categories(categoryId).products(productId).get()
+      // console.log('Product: ', findOneProductResponse.content)
+
+      // const product = findOneProductResponse.content.result
+      // const backUpName = product.name + ''
+      // product.name = `${product.name} SDK`
+      // const saveProductResponse = await product.save()
+      // console.log('Save new name', saveProductResponse)
+
+      // const updateProductResponse = await ordering.businesses(businessId).categories(categoryId).products(productId).save({ name: backUpName })
+      // console.log('Update product: ', updateProductResponse.content)
+
+      // Pages
+      // const getPagesResponse = await ordering.pages().get()
+      // console.log('Pages: ', getPagesResponse.content)
+      
+      // const pageId = getPagesResponse.content.result[0].id
+
+      // const findOnePageResponse = await ordering.pages(pageId).get()
+      // console.log('Page: ', findOnePageResponse.content)
+
+      // const page = findOnePageResponse.content.result
+      // const backUpName = page.name + ''
+      // page.name = `${backUpName} SDK`
+      // const savePageResponse = await page.save()
+      // console.log('Save new name', savePageResponse)
+
+      // const updatePageResponse = await ordering.pages(pageId).save({ name: backUpName })
+      // console.log('Update page: ', updatePageResponse.content)
+
+      // Menus
+      // const getBusinessesDashboard = await ordering.businesses().asDashboard().get()
+      // const businessId = getBusinessesDashboard.content.result[0].id
+
+      // const getMenusResponse = await ordering.businesses(businessId).menus().get()
+      // console.log('Menus: ', getMenusResponse.content)
+
+      // const menuId = getMenusResponse.content.result[0].id
+
+      // const findOneMenuResponse = await ordering.businesses(businessId).menus(menuId).get()
+      // console.log('Menu: ', findOneMenuResponse.content)
+
+      // const menu = findOneMenuResponse.content.result
+      // const backUpName = menu.name + ''
+      // menu.name = `${backUpName} SDK`
+      // const saveMenuResponse = await menu.save()
+      // console.log('Save new name', saveMenuResponse)
+
+      // const updateMenuResponse = await ordering.businesses(businessId).menus(menuId).save({ name: backUpName })
+      // console.log('Update menu: ', updateMenuResponse.content)
+
+      // Business products
+      // const getBusinessesDashboard = await ordering.businesses().asDashboard().get()
+      // const businessId = getBusinessesDashboard.content.result[0].id
+
+      // const getBusinessProductsResponse = await ordering.businesses(19).products().parameters({ type: 1 }).get()
+      // console.log('Business products: ', getBusinessProductsResponse.content)
+
+      // User alerts
+      // const getUserAlertsResponse = await ordering.users(user.id).alerts().get()
+      // console.log('Alerts: ', getUserAlertsResponse.content)
+
+      // Countries
+      // const getCuntriesResponse = await ordering.countries().get()
+      // console.log('Countries: ', getCuntriesResponse.content)
+      // const countryId = getCuntriesResponse.content.result[0].id
+
+      // const findOneCountryResponse = await ordering.countries(countryId).get()
+      // console.log('Country: ', findOneCountryResponse.content)
+
+      // const country = findOneCountryResponse.content.result
+      // const backUpName = country.name + ''
+      // country.name = `${backUpName} SDK`
+      // const saveCountryResponse = await country.save()
+      // console.log('Save new name', saveCountryResponse)
+
+      // const updateCountryResponse = await ordering.countries(countryId).save({ name: backUpName })
+      // console.log('Update country: ', updateCountryResponse.content)
+
+      // Cities
+      // const getCuntriesResponse = await ordering.countries().get()
+      // const countryId = getCuntriesResponse.content.result[0].id
+
+      // const getCitiesResponse = await ordering.countries(countryId).cities().get()
+      // console.log('Cities: ', getCitiesResponse.content)
+      // const cityId = getCuntriesResponse.content.result[0].id
+
+      // const findOneCityResponse = await ordering.countries(countryId).cities(cityId).get()
+      // console.log('City: ', findOneCityResponse.content)
+
+      // const city = findOneCityResponse.content.result
+      // const backUpName = city.name + ''
+      // city.name = `${backUpName} SDK`
+      // const saveCityResponse = await city.save()
+      // console.log('Save new name', saveCityResponse)
+
+      // const updateCityResponse = await ordering.countries(countryId).cities(cityId).save({ name: backUpName })
+      // console.log('Update city: ', updateCityResponse.content)
+
+      // Order Summary
+      // const summaryResponse = await ordering.orders().where([{attribute: 'status', 'value': 0}]).summary()
+      // console.log(summaryResponse.content)
+
+      // Order messages
+      // const getOrdersResponse = await ordering.orders().get()
+      // const orderId = getOrdersResponse.content.result[0].id
+
+      // const getOrderMessagesResponse = await ordering.orders(orderId).messages().get()
+      // console.log('Messages: ', getOrderMessagesResponse.content)
+
+      // Order options
+      // const getOrderOptionsResponse = await ordering.orderOptions().get()
+      // console.log('Order options', getOrderOptionsResponse.content)
+
+      // Carts
+      // const getCartsResponse = await ordering.carts().get()
+      // console.log('Carts: ', getCartsResponse.content)
+      // const cartUuid = getCartsResponse.content.result[0].uuid
+
+      // const getCartResponse = await ordering.carts(cartUuid).get()
+      // console.log('Cart: ', getCartResponse.content)
+
+      // const updateCartRequest = await ordering.carts(cartUuid).addProduct({})
+      // console.log('Update cart: ', updateCartRequest.content)
 
       // Logout
       const logoutResponse = await ordering.users(user.id).logout()

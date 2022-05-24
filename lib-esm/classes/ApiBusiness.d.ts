@@ -3,6 +3,10 @@ import { Ordering } from './Ordering';
 import { RequestOptionsProps } from '../interfaces/RequestOptionsProps';
 import { ApiBase, ApiBaseInterface } from './ApiBase';
 import { BusinessProps } from '../models/Business';
+import { ApiCategory } from './ApiCategory';
+import { ApiMenu } from './ApiMenu';
+import { ApiBusinessProduct } from './ApiBusinessProduct';
+import { RequestOptionsBusinessProps } from '../interfaces/RequestOptionsBusinessProps';
 /**
  * Class to configs api control
  */
@@ -18,7 +22,7 @@ export declare class ApiBusiness extends ApiBase implements ApiBaseInterface {
      * Get a business if businessId is set else get all
      * @param {RequestOptionsProps} options Params, headers and other options
      */
-    get(options?: RequestOptionsProps): Promise<ApiResponse>;
+    get(options?: RequestOptionsBusinessProps): Promise<ApiResponse>;
     /**
      * Update a business if configId is set else create business
      * @param {BusinessProps} business Attributes to create or update business
@@ -31,4 +35,18 @@ export declare class ApiBusiness extends ApiBase implements ApiBaseInterface {
      */
     delete(options?: RequestOptionsProps): Promise<ApiResponse>;
     validateCart(cart: any, options?: RequestOptionsProps): Promise<ApiResponse>;
+    /**
+     * Return products api
+     */
+    products(): ApiBusinessProduct;
+    /**
+     * Return categories api
+     * @param {number} categoryId Category id is optional
+     */
+    categories(categoryId: number): ApiCategory;
+    /**
+     * Return menus api
+     * @param {number} menuId Menu id is optional
+     */
+    menus(menuId: number): ApiMenu;
 }

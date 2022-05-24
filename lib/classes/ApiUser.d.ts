@@ -4,6 +4,7 @@ import { RequestOptionsProps } from '../interfaces/RequestOptionsProps';
 import { UserProps } from '../models/User';
 import { ApiAddress } from './ApiAddress';
 import { ApiBaseInterface, ApiBase } from './ApiBase';
+import { ApiDriverLocations } from './ApiDriverLocations';
 interface CredentialsProps {
     email?: string;
     cellphone?: string;
@@ -18,6 +19,9 @@ interface ResetProps {
     password: string;
 }
 interface FacebookProps {
+    access_token?: string;
+}
+interface GoogleProps {
     access_token?: string;
 }
 interface LogoutProps {
@@ -81,9 +85,27 @@ export declare class ApiUser extends ApiBase implements ApiBaseInterface {
      */
     authFacebook(facebook: FacebookProps, options?: RequestOptionsProps): Promise<ApiResponse>;
     /**
+     * Login with Google
+     * @param {GoogleProps} google access_token to login with Facebook
+     * @param {RequestOptionsProps} options Params, headers and other options
+     */
+    authGoogle(google: GoogleProps, options?: RequestOptionsProps): Promise<ApiResponse>;
+    /**
+     * Return api alert a user by userId
+     * @param {RequestOptionsProps} options Params, headers and other options
+     */
+    alerts(): {
+        get: (options?: RequestOptionsProps) => Promise<ApiResponse>;
+    };
+    /**
      * Return the api addresses
      * @param {number} addressId Address id is optional
      */
     addresses(addressId: number): ApiAddress;
+    /**
+   * Return the api driver locations
+   * @param {number} addressId Address id is optional
+   */
+    driverLocations(): ApiDriverLocations;
 }
 export {};

@@ -84,5 +84,6 @@ export declare class Order extends Model implements ModelProps {
     get deliveryFee(): number;
     get serviceFee(): number;
     get totalTax(): number;
+    get totalDriverTip(): number;
     get total(): number;
 }

@@ -18,7 +18,7 @@ export interface ConditionInterface {
 export declare class ApiBase {
     ordering: Ordering;
     attributes: string[];
-    conditions: ConditionInterface[];
+    conditions: any;
     query: any;
     mode: string;
     constructor(ordering: Ordering);
@@ -31,7 +31,7 @@ export declare class ApiBase {
      * Conditions to get from Ordering API
      * @param conditions List of conditions
      */
-    where(conditions: ConditionInterface[]): this;
+    where(conditions: any): this;
     /**
      * Change request mode
      * @param mode Request mode

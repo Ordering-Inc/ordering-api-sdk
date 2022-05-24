@@ -28,7 +28,9 @@ var ApiResponse = /** @class */ (function () {
                         else if (typeof json === 'object') {
                             if (this.options.mode === 'dictionary') {
                                 for (var key in json.result) {
-                                    json.result[key] = new this.options.CastClass(json.result[key], this.api);
+                                    if (typeof json.result[key] === 'object') {
+                                        json.result[key] = new this.options.CastClass(json.result[key], this.api);
+                                    }
                                 }
                             }
                             else {
