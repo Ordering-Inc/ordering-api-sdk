@@ -1,6 +1,7 @@
 import { ApiResponse } from './ApiResponse';
 import { Ordering } from './Ordering';
 import { RequestOptionsProps } from '../interfaces/RequestOptionsProps';
+import { RequestOptionsBusinessProps } from '../interfaces/RequestOptionsBusinessProps';
 import { ApiBase, ApiBaseInterface } from './ApiBase';
 import { BusinessProps } from '../models/Business';
 import { ApiCategory } from './ApiCategory';
@@ -21,7 +22,7 @@ export declare class ApiBusiness extends ApiBase implements ApiBaseInterface {
      * Get a business if businessId is set else get all
      * @param {RequestOptionsProps} options Params, headers and other options
      */
-    get(options?: RequestOptionsProps): Promise<ApiResponse>;
+    get(options?: RequestOptionsBusinessProps): Promise<ApiResponse>;
     /**
      * Update a business if configId is set else create business
      * @param {BusinessProps} business Attributes to create or update business
