@@ -83,7 +83,7 @@ var ApiBusiness = /** @class */ (function (_super) {
                         if (this.businessId && this.conditions) {
                             throw new Error('The `where` function is not compatible with businesses(businessId). Example ordering.businesses().where(contitions).get()');
                         }
-                        url = '/business' + (this.businessId ? "/" + this.businessId : '');
+                        url = options.advancedSearch ? '/search' : ('/business' + (this.businessId ? "/" + this.businessId : ''));
                         return [4 /*yield*/, this.makeRequest('GET', url, undefined, Business, options)];
                     case 1:
                         response = _b.sent();
