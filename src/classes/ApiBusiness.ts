@@ -1,6 +1,7 @@
 import { ApiResponse } from './ApiResponse'
 import { Ordering } from './Ordering'
 import { RequestOptionsProps } from '../interfaces/RequestOptionsProps'
+import { RequestOptionsBusinessProps } from '../interfaces/RequestOptionsBusinessProps'
 import { ApiBase, ApiBaseInterface } from './ApiBase'
 import { Business, BusinessProps } from '../models/Business'
 import { ApiCategory } from './ApiCategory'
@@ -31,11 +32,11 @@ export class ApiBusiness extends ApiBase implements ApiBaseInterface {
    * Get a business if businessId is set else get all
    * @param {RequestOptionsProps} options Params, headers and other options
    */
-  async get (options: RequestOptionsProps = {}) {
+  async get (options: RequestOptionsBusinessProps = {}) {
     if (this.businessId && this.conditions) {
       throw new Error('The `where` function is not compatible with businesses(businessId). Example ordering.businesses().where(contitions).get()')
     }
-    const url = '/business' + (this.businessId ? `/${this.businessId}` : '')
+    const url = options.advancedSearch ? '/search' : ('/business' + (this.businessId ? `/${this.businessId}` : ''))
     const response: ApiResponse = await this.makeRequest('GET', url, undefined, Business, options)
     const { content: { error, result } } = response
     if (!error && !this.businessId) {
