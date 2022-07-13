@@ -7,7 +7,7 @@ export interface ModelProps {
 export class Model {
   private original: any
   private api: TypeApi
-  private hidden: string[] = ['original', 'api', 'hidden']
+  private hidden: string[] = ['original', 'api', 'hidden', 'total', 'subtotal']
   constructor (original: any, api: TypeApi, hidden: string[] = []) {
     this.original = {
       ...original
