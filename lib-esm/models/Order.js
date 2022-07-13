@@ -17,9 +17,12 @@ var Order = /** @class */ (function (_super) {
     function Order(order, api) {
         if (order === void 0) { order = {}; }
         var _this = _super.call(this, order, api, ['customer', 'business']) || this;
+        var excludeProps = ['total', 'subtotal'];
         Object.entries(order).map(function (_a) {
             var key = _a[0], value = _a[1];
-            _this[key] = value;
+            if (!excludeProps.includes(key)) {
+                _this[key] = value;
+            }
         });
         return _this;
     }
