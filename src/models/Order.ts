@@ -80,8 +80,11 @@ export class Order extends Model implements ModelProps {
 
   constructor (order: OrderProps = {}, api: TypeApi) {
     super(order, api, ['customer', 'business'])
+    const excludeProps = ['total', 'subtotal']
     Object.entries(order).map(([key, value]) => {
-      this[key] = value
+      if (!excludeProps.includes(key)) {
+        this[key] = value
+      }
     })
   }
 
