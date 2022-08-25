@@ -23,6 +23,7 @@ interface SettingProps {
     accessToken?: string;
     apiKey?: string;
     appId?: string;
+    billing?: string;
 }
 export declare class Ordering {
     private url;
@@ -32,9 +33,11 @@ export declare class Ordering {
     private accessToken;
     private apiKey;
     private appId;
-    constructor({ url, version, project, language, accessToken, apiKey, appId }?: SettingProps);
+    private billing;
+    constructor({ url, version, project, language, accessToken, apiKey, appId, billing }?: SettingProps);
     get root(): string;
     get systemRoot(): string;
+    get billingUrl(): string;
     setAccessToken(accessToken: string): this;
     setApiKey(apiKey: string): this;
     setAppId(appId: string): this;
@@ -42,6 +45,7 @@ export declare class Ordering {
     setProject(project: string): this;
     setVersion(version: string): this;
     setLanguage(language: string): this;
+    setBilling(billing: string): this;
     users(userId?: number): ApiUser;
     orders(orderId?: number): ApiOrder;
     controls(orderId?: number): ApiControls;
