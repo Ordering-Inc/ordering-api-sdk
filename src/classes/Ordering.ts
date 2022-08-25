@@ -24,6 +24,7 @@ interface SettingProps {
   accessToken?: string
   apiKey?: string
   appId?: string
+  billing?: string
 }
 
 export class Ordering {
@@ -34,7 +35,8 @@ export class Ordering {
   private accessToken: string
   private apiKey: string
   private appId: string
-  constructor ({ url = 'https://apiv4.ordering.co', version = 'v400', project = 'demo', language = 'en', accessToken = null, apiKey = null, appId = null }: SettingProps = {}) {
+  private billing: string
+  constructor ({ url = 'https://apiv4.ordering.co', version = 'v400', project = 'demo', language = 'en', accessToken = null, apiKey = null, appId = null, billing = null }: SettingProps = {}) {
     this.url = url
     this.version = version
     this.project = project
@@ -42,6 +44,7 @@ export class Ordering {
     this.accessToken = accessToken
     this.apiKey = apiKey
     this.appId = appId
+    this.billing = billing
   }
 
   get root () {
@@ -50,6 +53,10 @@ export class Ordering {
 
   get systemRoot () {
     return `${this.url}/${this.version}`
+  }
+
+  get billingUrl () {
+    return this.billing
   }
 
   setAccessToken (accessToken: string) {
@@ -84,6 +91,11 @@ export class Ordering {
 
   setLanguage (language: string) {
     this.language = language
+    return this
+  }
+
+  setBilling (billing: string) {
+    this.billing = billing
     return this
   }
 
