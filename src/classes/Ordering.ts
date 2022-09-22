@@ -25,6 +25,7 @@ interface SettingProps {
   apiKey?: string
   appId?: string
   billing?: string
+  countryCode?: string
 }
 
 export class Ordering {
@@ -36,7 +37,8 @@ export class Ordering {
   private apiKey: string
   private appId: string
   private billing: string
-  constructor ({ url = 'https://apiv4.ordering.co', version = 'v400', project = 'demo', language = 'en', accessToken = null, apiKey = null, appId = null, billing = null }: SettingProps = {}) {
+  private countryCode: string
+  constructor ({ url = 'https://apiv4.ordering.co', version = 'v400', project = 'demo', language = 'en', accessToken = null, apiKey = null, appId = null, billing = null, countryCode = null }: SettingProps = {}) {
     this.url = url
     this.version = version
     this.project = project
@@ -45,6 +47,7 @@ export class Ordering {
     this.apiKey = apiKey
     this.appId = appId
     this.billing = billing
+    this.countryCode = countryCode
   }
 
   get root () {
@@ -57,6 +60,10 @@ export class Ordering {
 
   get billingUrl () {
     return this.billing
+  }
+
+  get countryCodeValue () {
+    return this.countryCode
   }
 
   setAccessToken (accessToken: string) {
@@ -96,6 +103,11 @@ export class Ordering {
 
   setBilling (billing: string) {
     this.billing = billing
+    return this
+  }
+
+  setCountryCode (countryCode: string) {
+    this.countryCode = countryCode
     return this
   }
 
@@ -204,6 +216,9 @@ export class Ordering {
     }
     if (this.appId) {
       authHeaders['X-APP-X'] = this.appId
+    }
+    if (this.countryCode) {
+      authHeaders['X-Country-Code-X'] = this.countryCode
     }
     /**
      * Create Option Request
